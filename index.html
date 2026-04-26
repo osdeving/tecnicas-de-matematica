@@ -1,0 +1,1980 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Potenciação e Radiciação — Guia Definitivo de Cálculo Mental</title>
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="style.css">
+      </body>
+      <script src="script.js"></script>
+      </html>
+      display: grid;
+      gap: 9px;
+    }
+
+    .answers button {
+      cursor: pointer;
+      text-align: left;
+      border: 1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.06);
+      color: var(--soft);
+      border-radius: 13px;
+      padding: 11px 12px;
+      font: inherit;
+      transition: transform .15s ease, background .15s ease, border .15s ease;
+    }
+
+    .answers button:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,.10);
+    }
+
+    .answers button.correct {
+      border-color: rgba(49,208,170,.7);
+      background: rgba(49,208,170,.16);
+      color: #d9fff6;
+    }
+
+    .answers button.incorrect {
+      border-color: rgba(255,92,122,.7);
+      background: rgba(255,92,122,.16);
+      color: #ffe2e8;
+    }
+
+    .feedback {
+      min-height: 26px;
+      margin-top: 8px;
+      font-weight: 800;
+    }
+
+    .feedback.good { color: #aef6e4; }
+    .feedback.bad { color: #ffc1cd; }
+
+    .footer {
+      color: var(--muted);
+      text-align: center;
+      padding: 28px 0 56px;
+    }
+
+    .mobile-only { display: none; }
+
+    @media (max-width: 920px) {
+      .layout { grid-template-columns: 1fr; }
+      .toc { position: static; }
+      .grid.cols-2, .grid.cols-3, .two-paths { grid-template-columns: 1fr; }
+      .hero-card { padding: 28px; border-radius: 26px; }
+      .formula-table { font-size: .94rem; }
+      .formula-table td:first-child { width: auto; }
+    }
+
+    @media print {
+      body { background: white; color: #111827; }
+      .hero-card, .block, .toc, .exercise, .card, .path, .mathline, details, .quiz-card {
+        box-shadow: none !important;
+        background: white !important;
+        color: #111827 !important;
+        border-color: #d1d5db !important;
+      }
+      p, .lead, .sublead, .toc a { color: #374151 !important; }
+      .toc, .hero-actions, .quiz { display: none; }
+      .layout { display: block; }
+      .page { width: 100%; }
+      details { break-inside: avoid; }
+      details:not([open]) .details-body { display: block; }
+      summary::before { content: ""; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-card">
+        <span class="eyebrow"><span class="dot"></span> Aritmética pura • cálculo mental • propriedades</span>
+        <h1>Potenciação e Radiciação sem medo</h1>
+        <p class="lead">
+          Uma página de treino para reconhecer padrões, escolher a propriedade certa,
+          evitar pegadinhas e transformar contas aparentemente feias em contas mentais.
+          O foco aqui é aritmética direta: sem historinha, sem contexto, só técnica.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#teoria-potenciacao">Começar pela teoria</a>
+          <a class="btn" href="#exercicios">Ir aos exercícios resolvidos</a>
+          <a class="btn" href="#quiz">Fazer o quiz</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="toc">
+        <div class="toc-title">Mapa da página</div>
+        <a href="#mentalidade">Mentalidade de cálculo</a>
+        <a href="#teoria-potenciacao">Teoria: potenciação</a>
+        <a href="#teoria-radiciacao">Teoria: radiciação</a>
+        <a href="#tecnicas">Técnicas de ataque</a>
+        <a href="#pegadinhas">Pegadinhas clássicas</a>
+        <a href="#exercicios">Exercícios resolvidos</a>
+        <a href="#quiz">Quiz interativo</a>
+        <a href="#gabarito-mental">Checklist mental</a>
+      </aside>
+
+      <main>
+        <section id="mentalidade" class="block">
+          <h2>1. A mentalidade correta</h2>
+          <p class="sublead">
+            Ao ver uma conta com potência ou raiz, não comece calculando bruto. Primeiro procure estrutura.
+          </p>
+
+          <div class="grid cols-3">
+            <div class="card">
+              <div class="mini-title">1. Procure bases iguais</div>
+              <p>Se aparecerem potências de mesma base, talvez dê para somar, subtrair ou multiplicar expoentes.</p>
+              <div class="mathline">\(2^7 \cdot 2^3 = 2^{10}\)</div>
+            </div>
+
+            <div class="card">
+              <div class="mini-title">2. Fatora antes de calcular</div>
+              <p>Troque números grandes por potências conhecidas.</p>
+              <div class="mathline">\(81 = 3^4,\quad 125=5^3,\quad 1024=2^{10}\)</div>
+            </div>
+
+            <div class="card">
+              <div class="mini-title">3. Use a raiz como expoente</div>
+              <p>Raiz geralmente fica mais fácil quando vira expoente fracionário.</p>
+              <div class="mathline">\(\sqrt[3]{2^9}=2^{9/3}=2^3\)</div>
+            </div>
+          </div>
+
+          <div class="note ok">
+            <strong>Ideia-mãe:</strong> potência e raiz são operações inversas. A conta fica fácil quando você transforma tudo na mesma linguagem:
+            ou tudo em potência, ou tudo em raiz, ou tudo fatorado em primos.
+          </div>
+        </section>
+
+        <section id="teoria-potenciacao" class="block">
+          <h2>2. Teoria essencial da potenciação</h2>
+          <p class="sublead">
+            Potenciação é multiplicação repetida. As propriedades abaixo são o “motor” do cálculo mental.
+          </p>
+
+          <table class="formula-table">
+            <thead>
+              <tr>
+                <th>Propriedade</th>
+                <th>Fórmula</th>
+                <th>Uso mental</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Produto de mesma base</td>
+                <td>\(a^m \cdot a^n = a^{m+n}\)</td>
+                <td>Juntar potências repetidas sem calcular cada uma.</td>
+              </tr>
+              <tr>
+                <td>Quociente de mesma base</td>
+                <td>\(\dfrac{a^m}{a^n}=a^{m-n}\), \(a\neq0\)</td>
+                <td>Cancelar potência em frações rapidamente.</td>
+              </tr>
+              <tr>
+                <td>Potência de potência</td>
+                <td>\((a^m)^n=a^{mn}\)</td>
+                <td>Multiplicar expoentes em vez de expandir.</td>
+              </tr>
+              <tr>
+                <td>Potência de produto</td>
+                <td>\((ab)^n=a^n b^n\)</td>
+                <td>Separar ou juntar fatores convenientes.</td>
+              </tr>
+              <tr>
+                <td>Potência de quociente</td>
+                <td>\(\left(\dfrac{a}{b}\right)^n=\dfrac{a^n}{b^n}\), \(b\neq0\)</td>
+                <td>Trabalhar com frações elevadas.</td>
+              </tr>
+              <tr>
+                <td>Expoente zero</td>
+                <td>\(a^0=1\), \(a\neq0\)</td>
+                <td>Eliminar fatores inteiros de uma expressão.</td>
+              </tr>
+              <tr>
+                <td>Expoente negativo</td>
+                <td>\(a^{-n}=\dfrac{1}{a^n}\), \(a\neq0\)</td>
+                <td>Inverter a base/fração.</td>
+              </tr>
+              <tr>
+                <td>Expoente fracionário</td>
+                <td>\(a^{m/n}=\sqrt[n]{a^m}=(\sqrt[n]{a})^m\)</td>
+                <td>Converter raiz em potência.</td>
+              </tr>
+              <tr>
+                <td>Base negativa</td>
+                <td>\((-a)^n\) depende da paridade de \(n\)</td>
+                <td>Expoente par dá positivo; ímpar conserva negativo.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>2.1 Parênteses mudam tudo</h3>
+          <div class="grid cols-2">
+            <div class="card">
+              <div class="mini-title">Com parênteses</div>
+              <div class="mathline">\((-3)^2 = (-3)(-3)=9\)</div>
+              <p>A base é o número inteiro \(-3\).</p>
+            </div>
+            <div class="card">
+              <div class="mini-title">Sem parênteses</div>
+              <div class="mathline">\(-3^2 = -(3^2)=-9\)</div>
+              <p>A potência atinge apenas o \(3\); o sinal de menos fica fora.</p>
+            </div>
+          </div>
+
+          <div class="note danger">
+            <strong>Pegadinha mortal:</strong> \((a+b)^2 \neq a^2+b^2\).
+            Potência distribui sobre multiplicação e divisão, mas não distribui sobre soma e subtração.
+          </div>
+        </section>
+
+        <section id="teoria-radiciacao" class="block">
+          <h2>3. Teoria essencial da radiciação</h2>
+          <p class="sublead">
+            A raiz pergunta: “qual número elevado a este índice produz o radicando?”.
+          </p>
+
+          <div class="mathline">\(\sqrt[n]{a}=b \Longleftrightarrow b^n=a\)</div>
+
+          <table class="formula-table">
+            <thead>
+              <tr>
+                <th>Propriedade</th>
+                <th>Fórmula</th>
+                <th>Uso mental</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Raiz como potência</td>
+                <td>\(\sqrt[n]{a}=a^{1/n}\)</td>
+                <td>Transformar radiciação em potenciação.</td>
+              </tr>
+              <tr>
+                <td>Raiz de potência</td>
+                <td>\(\sqrt[n]{a^m}=a^{m/n}\)</td>
+                <td>Dividir expoente pelo índice quando possível.</td>
+              </tr>
+              <tr>
+                <td>Produto de raízes</td>
+                <td>\(\sqrt[n]{a}\cdot\sqrt[n]{b}=\sqrt[n]{ab}\)</td>
+                <td>Juntar radicandos para formar potência perfeita.</td>
+              </tr>
+              <tr>
+                <td>Quociente de raízes</td>
+                <td>\(\dfrac{\sqrt[n]{a}}{\sqrt[n]{b}}=\sqrt[n]{a/b}\)</td>
+                <td>Dividir radicandos e simplificar.</td>
+              </tr>
+              <tr>
+                <td>Raiz de raiz</td>
+                <td>\(\sqrt[m]{\sqrt[n]{a}}=\sqrt[mn]{a}\)</td>
+                <td>Multiplicar índices.</td>
+              </tr>
+              <tr>
+                <td>Potência de raiz</td>
+                <td>\((\sqrt[n]{a})^m=\sqrt[n]{a^m}\)</td>
+                <td>Levar expoente para dentro ou para fora.</td>
+              </tr>
+              <tr>
+                <td>Extração de fator</td>
+                <td>\(\sqrt[n]{a^n b}=a\sqrt[n]{b}\)</td>
+                <td>Quebrar o radicando em potência perfeita vezes resto.</td>
+              </tr>
+              <tr>
+                <td>Introdução no radical</td>
+                <td>\(a\sqrt[n]{b}=\sqrt[n]{a^n b}\)</td>
+                <td>Colocar fator para dentro da raiz.</td>
+              </tr>
+              <tr>
+                <td>Radicais semelhantes</td>
+                <td>\(p\sqrt[n]{a}+q\sqrt[n]{a}=(p+q)\sqrt[n]{a}\)</td>
+                <td>Somar coeficientes, não radicandos.</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>3.1 Índice par versus índice ímpar</h3>
+          <div class="grid cols-2">
+            <div class="card">
+              <div class="mini-title">Índice par</div>
+              <p>No conjunto dos reais, o radicando precisa ser não negativo.</p>
+              <div class="mathline">\(\sqrt{16}=4\)</div>
+              <div class="mathline">\(\sqrt{-16}\notin\mathbb{R}\)</div>
+            </div>
+            <div class="card">
+              <div class="mini-title">Índice ímpar</div>
+              <p>Radicando negativo é permitido.</p>
+              <div class="mathline">\(\sqrt[3]{-27}=-3\)</div>
+              <div class="mathline">\((-3)^3=-27\)</div>
+            </div>
+          </div>
+
+          <div class="note warning">
+            <strong>Cuidado:</strong> \(\sqrt{9}=3\), não \(\pm3\). O \(\pm\) aparece ao resolver equação:
+            \(x^2=9 \Rightarrow x=\pm3\).
+          </div>
+        </section>
+
+        <section id="tecnicas" class="block">
+          <h2>4. Técnicas de ataque para cálculo mental</h2>
+
+          <div class="grid cols-2">
+            <div class="card">
+              <span class="tag blue">Técnica 1</span>
+              <h3>Fatorar em primos</h3>
+              <p>Transforme números grandes em potências de primos.</p>
+              <div class="mathline">\(72=2^3\cdot3^2\)</div>
+              <div class="mathline">\(\sqrt{72}=\sqrt{2^2\cdot 18}=2\sqrt{18}=6\sqrt2\)</div>
+            </div>
+
+            <div class="card">
+              <span class="tag blue">Técnica 2</span>
+              <h3>Reconhecer potências perfeitas</h3>
+              <p>Decore blocos comuns.</p>
+              <div class="mathline">\(16=2^4,\quad 27=3^3,\quad 64=2^6,\quad 81=3^4,\quad 125=5^3\)</div>
+            </div>
+
+            <div class="card">
+              <span class="tag blue">Técnica 3</span>
+              <h3>Trocar raiz por expoente</h3>
+              <p>É excelente quando há raiz de raiz ou potência dentro da raiz.</p>
+              <div class="mathline">\(\sqrt[4]{2^6}=2^{6/4}=2^{3/2}=2\sqrt2\)</div>
+            </div>
+
+            <div class="card">
+              <span class="tag blue">Técnica 4</span>
+              <h3>Cancelar antes de calcular</h3>
+              <p>Evite números gigantes. Cancele usando propriedades.</p>
+              <div class="mathline">\(\dfrac{3^8}{3^5}=3^3=27\)</div>
+            </div>
+
+            <div class="card">
+              <span class="tag blue">Técnica 5</span>
+              <h3>Quebrar divisor em fatores</h3>
+              <p>Dividir por \(12\) é dividir por \(3\) e depois por \(4\), ou vice-versa.</p>
+              <div class="mathline">\(960\div32=960\div2\div2\div2\div2\div2=30\)</div>
+            </div>
+
+            <div class="card">
+              <span class="tag blue">Técnica 6</span>
+              <h3>Escolher o caminho mais limpo</h3>
+              <p>Às vezes há vários caminhos; o melhor é o que evita frações ruins.</p>
+              <div class="mathline">\(8^{2/3}=(\sqrt[3]{8})^2=2^2=4\)</div>
+              <p>Melhor do que calcular \(8^2=64\) primeiro e depois \(\sqrt[3]{64}\).</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="pegadinhas" class="block">
+          <h2>5. Pegadinhas clássicas</h2>
+
+          <div class="grid cols-2">
+            <div class="card">
+              <span class="tag bad">Não faça</span>
+              <div class="mathline">\((2+3)^2 \neq 2^2+3^2\)</div>
+              <p>Correto: \((2+3)^2=5^2=25\). Já \(2^2+3^2=13\).</p>
+            </div>
+
+            <div class="card">
+              <span class="tag bad">Não faça</span>
+              <div class="mathline">\(\sqrt{9+16}\neq \sqrt9+\sqrt{16}\)</div>
+              <p>Correto: \(\sqrt{25}=5\). O outro lado daria \(3+4=7\).</p>
+            </div>
+
+            <div class="card">
+              <span class="tag warn">Atenção</span>
+              <div class="mathline">\((-2)^4=16,\quad -2^4=-16\)</div>
+              <p>Parênteses definem se o sinal faz parte da base.</p>
+            </div>
+
+            <div class="card">
+              <span class="tag warn">Atenção</span>
+              <div class="mathline">\(\sqrt{x^2}=|x|\)</div>
+              <p>Se \(x\) pode ser negativo, a raiz principal é não negativa.</p>
+            </div>
+
+            <div class="card">
+              <span class="tag bad">Não faça</span>
+              <div class="mathline">\(a^m+a^n\neq a^{m+n}\)</div>
+              <p>Soma de potências não segue regra de produto.</p>
+            </div>
+
+            <div class="card">
+              <span class="tag good">Faça</span>
+              <div class="mathline">\(a^m\cdot a^n=a^{m+n}\)</div>
+              <p>A regra vale para multiplicação de potências de mesma base.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="exercicios" class="block">
+          <h2>6. Exercícios resolvidos de aritmética pura</h2>
+          <p class="sublead">
+            Cada exercício mostra a propriedade escolhida, o motivo da escolha e, quando vale a pena, outro caminho possível.
+          </p>
+
+          <article class="exercise" data-n="01">
+            <div class="exercise-title">\(\left(\sqrt[9]{27}\right)^3\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: fatorar o 27</span>
+              <span class="tag blue">Raiz como potência</span>
+            </div>
+            <div class="steps">
+              <div class="step">Reconheça \(27=3^3\).</div>
+              <div class="step">
+                \[
+                \left(\sqrt[9]{27}\right)^3
+                =
+                \left(\sqrt[9]{3^3}\right)^3
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt[9]{3^3}=3^{3/9}=3^{1/3}
+                \]
+              </div>
+              <div class="step">
+                \[
+                \left(3^{1/3}\right)^3=3
+                \]
+              </div>
+            </div>
+            <details open>
+              <summary>Resultado</summary>
+              <div class="details-body">
+                \[
+                \boxed{3}
+                \]
+                <p>Raiz nona com expoente externo \(3\) simplifica porque \(27\) já é \(3^3\).</p>
+              </div>
+            </details>
+          </article>
+
+          <article class="exercise" data-n="02">
+            <div class="exercise-title">\(\sqrt{\sqrt[3]{64}}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: raiz de raiz</span>
+              <span class="tag blue">Fatoração em potência de 2</span>
+            </div>
+            <div class="two-paths">
+              <div class="path best">
+                <strong>Caminho A <span class="pill">mais limpo</span></strong>
+                \[
+                \sqrt{\sqrt[3]{64}}
+                =
+                \sqrt[2\cdot3]{64}
+                =
+                \sqrt[6]{64}
+                \]
+                Como \(64=2^6\):
+                \[
+                \sqrt[6]{2^6}=2
+                \]
+              </div>
+              <div class="path">
+                <strong>Caminho B</strong>
+                \[
+                \sqrt[3]{64}=4
+                \]
+                Depois:
+                \[
+                \sqrt4=2
+                \]
+              </div>
+            </div>
+            <details open>
+              <summary>Resultado</summary>
+              <div class="details-body">\(\boxed{2}\)</div>
+            </details>
+          </article>
+
+          <article class="exercise" data-n="03">
+            <div class="exercise-title">\(\dfrac{2^9\cdot 2^4}{2^7}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: juntar e cancelar expoentes</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                Produto de mesma base:
+                \[
+                2^9\cdot2^4=2^{13}
+                \]
+              </div>
+              <div class="step">
+                Quociente de mesma base:
+                \[
+                \frac{2^{13}}{2^7}=2^{13-7}=2^6
+                \]
+              </div>
+              <div class="step">
+                \[
+                2^6=64
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{64}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="04">
+            <div class="exercise-title">\(\dfrac{81^{3/4}}{27^{2/3}}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: escrever tudo em base 3</span>
+              <span class="tag blue">Expoente fracionário</span>
+            </div>
+            <div class="steps">
+              <div class="step">Fatore:
+                \[
+                81=3^4,\quad 27=3^3
+                \]
+              </div>
+              <div class="step">
+                \[
+                81^{3/4}=(3^4)^{3/4}=3^3=27
+                \]
+              </div>
+              <div class="step">
+                \[
+                27^{2/3}=(3^3)^{2/3}=3^2=9
+                \]
+              </div>
+              <div class="step">
+                \[
+                \frac{27}{9}=3
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{3}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="05">
+            <div class="exercise-title">\(\sqrt{200}+\sqrt{50}-\sqrt{8}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: extrair quadrados perfeitos</span>
+              <span class="tag blue">Radicais semelhantes</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                \sqrt{200}=\sqrt{100\cdot2}=10\sqrt2
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt{50}=\sqrt{25\cdot2}=5\sqrt2
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt8=\sqrt{4\cdot2}=2\sqrt2
+                \]
+              </div>
+              <div class="step">
+                \[
+                10\sqrt2+5\sqrt2-2\sqrt2=13\sqrt2
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{13\sqrt2}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="06">
+            <div class="exercise-title">\(\sqrt[3]{432}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: procurar cubo perfeito dentro</span>
+            </div>
+            <div class="two-paths">
+              <div class="path best">
+                <strong>Caminho A <span class="pill">mental</span></strong>
+                \[
+                432=216\cdot2=6^3\cdot2
+                \]
+                Portanto:
+                \[
+                \sqrt[3]{432}=6\sqrt[3]{2}
+                \]
+              </div>
+              <div class="path">
+                <strong>Caminho B</strong>
+                \[
+                432=2^4\cdot3^3=2^3\cdot3^3\cdot2
+                \]
+                \[
+                \sqrt[3]{432}=2\cdot3\sqrt[3]{2}=6\sqrt[3]{2}
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{6\sqrt[3]{2}}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="07">
+            <div class="exercise-title">\(\left(\dfrac{2}{3}\right)^{-3}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: expoente negativo inverte</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                \left(\frac{2}{3}\right)^{-3}
+                =
+                \left(\frac{3}{2}\right)^3
+                \]
+              </div>
+              <div class="step">
+                \[
+                \left(\frac{3}{2}\right)^3
+                =
+                \frac{3^3}{2^3}
+                =
+                \frac{27}{8}
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{\dfrac{27}{8}}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="08">
+            <div class="exercise-title">\(\dfrac{5^7+5^7+5^7+5^7+5^7}{5^6}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: transformar soma repetida em multiplicação</span>
+              <span class="tag warn">Pegadinha: não some expoentes em soma</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                O numerador tem cinco cópias de \(5^7\):
+                \[
+                5^7+5^7+5^7+5^7+5^7=5\cdot5^7
+                \]
+              </div>
+              <div class="step">
+                \[
+                5\cdot5^7=5^1\cdot5^7=5^8
+                \]
+              </div>
+              <div class="step">
+                \[
+                \frac{5^8}{5^6}=5^2=25
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{25}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="09">
+            <div class="exercise-title">\(\sqrt{49\cdot81}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: separar produto em raízes perfeitas</span>
+            </div>
+            <div class="two-paths">
+              <div class="path best">
+                <strong>Caminho A <span class="pill">mais mental</span></strong>
+                \[
+                \sqrt{49\cdot81}
+                =
+                \sqrt{49}\cdot\sqrt{81}
+                =
+                7\cdot9=63
+                \]
+              </div>
+              <div class="path">
+                <strong>Caminho B</strong>
+                \[
+                49\cdot81=3969
+                \]
+                \[
+                \sqrt{3969}=63
+                \]
+                <p>Funciona, mas é muito pior para cálculo mental.</p>
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{63}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="10">
+            <div class="exercise-title">\(\sqrt[4]{16^3}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: reescrever \(16\) como \(2^4\)</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                16=2^4
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt[4]{16^3}
+                =
+                \sqrt[4]{(2^4)^3}
+                =
+                \sqrt[4]{2^{12}}
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt[4]{2^{12}}=2^{12/4}=2^3=8
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{8}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="11">
+            <div class="exercise-title">\(\dfrac{12^2}{3^2\cdot4}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: fatorar \(12=3\cdot4\)</span>
+            </div>
+            <div class="two-paths">
+              <div class="path best">
+                <strong>Caminho A <span class="pill">cancela antes</span></strong>
+                \[
+                \frac{12^2}{3^2\cdot4}
+                =
+                \frac{(3\cdot4)^2}{3^2\cdot4}
+                =
+                \frac{3^2\cdot4^2}{3^2\cdot4}
+                =
+                4
+                \]
+              </div>
+              <div class="path">
+                <strong>Caminho B</strong>
+                \[
+                12^2=144,\quad 3^2\cdot4=9\cdot4=36
+                \]
+                \[
+                144\div36=4
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{4}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="12">
+            <div class="exercise-title">\(\sqrt{18}\cdot\sqrt{2}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: juntar radicandos</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                \sqrt{18}\cdot\sqrt2=\sqrt{18\cdot2}
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt{36}=6
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{6}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="13">
+            <div class="exercise-title">\(\dfrac{\sqrt{75}}{\sqrt3}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: dividir dentro da raiz</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                \frac{\sqrt{75}}{\sqrt3}
+                =
+                \sqrt{\frac{75}{3}}
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt{25}=5
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{5}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="14">
+            <div class="exercise-title">\(\dfrac{2^{10}-2^8}{2^7}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: fator comum</span>
+              <span class="tag warn">Pegadinha: subtração não vira subtração de expoentes</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                Fator comum no numerador:
+                \[
+                2^{10}-2^8=2^8(2^2-1)
+                \]
+              </div>
+              <div class="step">
+                \[
+                2^8(4-1)=3\cdot2^8
+                \]
+              </div>
+              <div class="step">
+                \[
+                \frac{3\cdot2^8}{2^7}=3\cdot2=6
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{6}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="15">
+            <div class="exercise-title">\(\sqrt{2^6\cdot3^4\cdot5^2}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: metade dos expoentes</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                Raiz quadrada divide expoentes por \(2\):
+                \[
+                \sqrt{2^6\cdot3^4\cdot5^2}
+                =
+                2^3\cdot3^2\cdot5
+                \]
+              </div>
+              <div class="step">
+                \[
+                2^3\cdot3^2\cdot5=8\cdot9\cdot5=360
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{360}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="16">
+            <div class="exercise-title">\(\sqrt[3]{2^7\cdot3^5}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: dividir expoentes por grupos de 3</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                Separe múltiplos de \(3\):
+                \[
+                2^7\cdot3^5=2^6\cdot2\cdot3^3\cdot3^2
+                \]
+              </div>
+              <div class="step">
+                Tire os cubos perfeitos:
+                \[
+                \sqrt[3]{2^6\cdot3^3\cdot2\cdot3^2}
+                =
+                2^2\cdot3\sqrt[3]{2\cdot9}
+                \]
+              </div>
+              <div class="step">
+                \[
+                2^2\cdot3\sqrt[3]{18}
+                =
+                12\sqrt[3]{18}
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{12\sqrt[3]{18}}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="17">
+            <div class="exercise-title">\(\dfrac{1}{2+\sqrt3}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: racionalização por conjugado</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                O conjugado de \(2+\sqrt3\) é \(2-\sqrt3\).
+              </div>
+              <div class="step">
+                \[
+                \frac{1}{2+\sqrt3}\cdot\frac{2-\sqrt3}{2-\sqrt3}
+                =
+                \frac{2-\sqrt3}{(2+\sqrt3)(2-\sqrt3)}
+                \]
+              </div>
+              <div class="step">
+                Diferença de quadrados:
+                \[
+                (2+\sqrt3)(2-\sqrt3)=2^2-(\sqrt3)^2=4-3=1
+                \]
+              </div>
+              <div class="step">
+                \[
+                \frac{2-\sqrt3}{1}=2-\sqrt3
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{2-\sqrt3}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="18">
+            <div class="exercise-title">\(\left(3\sqrt2\right)^2\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: potência de produto</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                (3\sqrt2)^2=3^2\cdot(\sqrt2)^2
+                \]
+              </div>
+              <div class="step">
+                \[
+                9\cdot2=18
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{18}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="19">
+            <div class="exercise-title">\(\left(\sqrt[3]{4}\right)^6\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: raiz como potência</span>
+            </div>
+            <div class="two-paths">
+              <div class="path best">
+                <strong>Caminho A <span class="pill">expoente</span></strong>
+                \[
+                \left(\sqrt[3]{4}\right)^6
+                =
+                \left(4^{1/3}\right)^6
+                =
+                4^2
+                =
+                16
+                \]
+              </div>
+              <div class="path">
+                <strong>Caminho B</strong>
+                \[
+                \left(\sqrt[3]{4}\right)^6
+                =
+                \left(\left(\sqrt[3]{4}\right)^3\right)^2
+                =
+                4^2=16
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{16}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="20">
+            <div class="exercise-title">\(\sqrt{48}+\sqrt{27}-\sqrt{75}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: reduzir todos ao mesmo radical</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                \sqrt{48}=\sqrt{16\cdot3}=4\sqrt3
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt{27}=\sqrt{9\cdot3}=3\sqrt3
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt{75}=\sqrt{25\cdot3}=5\sqrt3
+                \]
+              </div>
+              <div class="step">
+                \[
+                4\sqrt3+3\sqrt3-5\sqrt3=2\sqrt3
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{2\sqrt3}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="21">
+            <div class="exercise-title">\(\dfrac{64^{5/6}}{8^{4/3}}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: base 2 em tudo</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                64=2^6,\quad 8=2^3
+                \]
+              </div>
+              <div class="step">
+                \[
+                64^{5/6}=(2^6)^{5/6}=2^5=32
+                \]
+              </div>
+              <div class="step">
+                \[
+                8^{4/3}=(2^3)^{4/3}=2^4=16
+                \]
+              </div>
+              <div class="step">
+                \[
+                \frac{32}{16}=2
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{2}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="22">
+            <div class="exercise-title">\(\sqrt[5]{32^3}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: reconhecer \(32=2^5\)</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                32=2^5
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt[5]{32^3}
+                =
+                \sqrt[5]{(2^5)^3}
+                =
+                \sqrt[5]{2^{15}}
+                \]
+              </div>
+              <div class="step">
+                \[
+                2^{15/5}=2^3=8
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{8}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="23">
+            <div class="exercise-title">\(\dfrac{3^{-2}\cdot 9^3}{27}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: base 3 em tudo</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                9=3^2,\quad27=3^3
+                \]
+              </div>
+              <div class="step">
+                \[
+                \frac{3^{-2}\cdot(3^2)^3}{3^3}
+                =
+                \frac{3^{-2}\cdot3^6}{3^3}
+                \]
+              </div>
+              <div class="step">
+                \[
+                3^{-2+6-3}=3^1=3
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{3}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="24">
+            <div class="exercise-title">\(\dfrac{\sqrt{12}\cdot\sqrt{27}}{\sqrt3}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: juntar tudo numa raiz</span>
+            </div>
+            <div class="two-paths">
+              <div class="path best">
+                <strong>Caminho A <span class="pill">mais rápido</span></strong>
+                \[
+                \frac{\sqrt{12}\cdot\sqrt{27}}{\sqrt3}
+                =
+                \sqrt{\frac{12\cdot27}{3}}
+                =
+                \sqrt{108}
+                \]
+                \[
+                \sqrt{108}=\sqrt{36\cdot3}=6\sqrt3
+                \]
+              </div>
+              <div class="path">
+                <strong>Caminho B</strong>
+                \[
+                \sqrt{12}=2\sqrt3,\quad \sqrt{27}=3\sqrt3
+                \]
+                \[
+                \frac{2\sqrt3\cdot3\sqrt3}{\sqrt3}
+                =
+                \frac{18}{\sqrt3}
+                =
+                6\sqrt3
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{6\sqrt3}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="25">
+            <div class="exercise-title">\(\left(\dfrac{16}{81}\right)^{-3/4}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: expoente negativo primeiro</span>
+              <span class="tag blue">Potências perfeitas</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                Expoente negativo inverte:
+                \[
+                \left(\frac{16}{81}\right)^{-3/4}
+                =
+                \left(\frac{81}{16}\right)^{3/4}
+                \]
+              </div>
+              <div class="step">
+                \[
+                81=3^4,\quad16=2^4
+                \]
+              </div>
+              <div class="step">
+                \[
+                \left(\frac{3^4}{2^4}\right)^{3/4}
+                =
+                \left(\left(\frac32\right)^4\right)^{3/4}
+                =
+                \left(\frac32\right)^3
+                \]
+              </div>
+              <div class="step">
+                \[
+                \left(\frac32\right)^3=\frac{27}{8}
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{\dfrac{27}{8}}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="26">
+            <div class="exercise-title">\(\sqrt{121}-\sqrt[3]{125}+2^4\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: reconhecer potências perfeitas</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                \sqrt{121}=11
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt[3]{125}=5
+                \]
+              </div>
+              <div class="step">
+                \[
+                2^4=16
+                \]
+              </div>
+              <div class="step">
+                \[
+                11-5+16=22
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{22}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="27">
+            <div class="exercise-title">\(\sqrt[4]{\sqrt{2^{16}}}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: raiz de raiz ou expoentes fracionários</span>
+            </div>
+            <div class="two-paths">
+              <div class="path best">
+                <strong>Caminho A <span class="pill">raiz de raiz</span></strong>
+                \[
+                \sqrt[4]{\sqrt{2^{16}}}
+                =
+                \sqrt[8]{2^{16}}
+                =
+                2^{16/8}
+                =
+                2^2=4
+                \]
+              </div>
+              <div class="path">
+                <strong>Caminho B</strong>
+                \[
+                \sqrt{2^{16}}=2^8=256
+                \]
+                \[
+                \sqrt[4]{256}=4
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{4}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="28">
+            <div class="exercise-title">\(\dfrac{7^4-7^3}{7^2}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: fator comum</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                7^4-7^3=7^3(7-1)=6\cdot7^3
+                \]
+              </div>
+              <div class="step">
+                \[
+                \frac{6\cdot7^3}{7^2}=6\cdot7=42
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{42}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="29">
+            <div class="exercise-title">\(\sqrt{(3^2)(4^2)(5^2)}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: raiz de produto de quadrados</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                \sqrt{(3^2)(4^2)(5^2)}
+                =
+                \sqrt{(3\cdot4\cdot5)^2}
+                \]
+              </div>
+              <div class="step">
+                \[
+                3\cdot4\cdot5=60
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt{60^2}=60
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{60}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="30">
+            <div class="exercise-title">\(\sqrt[3]{-64}+\sqrt{(-5)^2}-(-2)^3\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: sinais e paridade</span>
+              <span class="tag warn">Pegadinha: raiz quadrada principal</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                \sqrt[3]{-64}=-4
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt{(-5)^2}=\sqrt{25}=5
+                \]
+                Não é \(-5\), pois raiz quadrada principal é não negativa.
+              </div>
+              <div class="step">
+                \[
+                (-2)^3=-8
+                \]
+              </div>
+              <div class="step">
+                \[
+                -4+5-(-8)=9
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{9}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="31">
+            <div class="exercise-title">\(\dfrac{10^6}{2^6\cdot5^4}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: \(10=2\cdot5\)</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                10^6=(2\cdot5)^6=2^6\cdot5^6
+                \]
+              </div>
+              <div class="step">
+                \[
+                \frac{2^6\cdot5^6}{2^6\cdot5^4}=5^2=25
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{25}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="32">
+            <div class="exercise-title">\(\sqrt{144\cdot25}-\sqrt{36\cdot49}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: separar produtos perfeitos</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                \sqrt{144\cdot25}=\sqrt{144}\cdot\sqrt{25}=12\cdot5=60
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt{36\cdot49}=6\cdot7=42
+                \]
+              </div>
+              <div class="step">
+                \[
+                60-42=18
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{18}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="33">
+            <div class="exercise-title">\(\dfrac{\sqrt[3]{2^9\cdot5^6}}{10^2}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: extrair cubos e cancelar</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                \sqrt[3]{2^9\cdot5^6}=2^3\cdot5^2=8\cdot25=200
+                \]
+              </div>
+              <div class="step">
+                \[
+                10^2=100
+                \]
+              </div>
+              <div class="step">
+                \[
+                \frac{200}{100}=2
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{2}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="34">
+            <div class="exercise-title">\(\left(2^3\cdot3^2\right)^2\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: potência de produto</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                (2^3\cdot3^2)^2=(2^3)^2(3^2)^2
+                \]
+              </div>
+              <div class="step">
+                \[
+                2^6\cdot3^4=64\cdot81
+                \]
+              </div>
+              <div class="step">
+                \[
+                64\cdot81=64(80+1)=5120+64=5184
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{5184}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="35">
+            <div class="exercise-title">\(\sqrt{2^{10}}\div\sqrt[5]{2^{10}}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: converter raízes em expoentes</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                \sqrt{2^{10}}=2^{10/2}=2^5
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt[5]{2^{10}}=2^{10/5}=2^2
+                \]
+              </div>
+              <div class="step">
+                \[
+                2^5\div2^2=2^3=8
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{8}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="36">
+            <div class="exercise-title">\(\sqrt{3^2+4^2}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: calcular a soma antes da raiz</span>
+              <span class="tag warn">Pegadinha: raiz não distribui sobre soma</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                3^2+4^2=9+16=25
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt{25}=5
+                \]
+              </div>
+            </div>
+            <details open>
+              <summary>Resultado</summary>
+              <div class="details-body">
+                \(\boxed{5}\)
+                <p>Errado seria fazer \(\sqrt{3^2}+\sqrt{4^2}=3+4=7\).</p>
+              </div>
+            </details>
+          </article>
+
+          <article class="exercise" data-n="37">
+            <div class="exercise-title">\((10^3)^2\div10^4\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: potência de potência</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                (10^3)^2=10^{6}
+                \]
+              </div>
+              <div class="step">
+                \[
+                10^6\div10^4=10^2=100
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{100}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="38">
+            <div class="exercise-title">\(\dfrac{4^5}{8^3}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: base 2</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                4=2^2,\quad8=2^3
+                \]
+              </div>
+              <div class="step">
+                \[
+                \frac{4^5}{8^3}
+                =
+                \frac{(2^2)^5}{(2^3)^3}
+                =
+                \frac{2^{10}}{2^9}
+                \]
+              </div>
+              <div class="step">
+                \[
+                2^{10-9}=2
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{2}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="39">
+            <div class="exercise-title">\(\sqrt[3]{\dfrac{216}{8}}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: dividir antes de extrair a raiz</span>
+            </div>
+            <div class="two-paths">
+              <div class="path best">
+                <strong>Caminho A <span class="pill">mais rápido</span></strong>
+                \[
+                \sqrt[3]{\frac{216}{8}}
+                =
+                \sqrt[3]{27}
+                =
+                3
+                \]
+              </div>
+              <div class="path">
+                <strong>Caminho B</strong>
+                \[
+                \frac{\sqrt[3]{216}}{\sqrt[3]{8}}
+                =
+                \frac{6}{2}
+                =
+                3
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{3}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="40">
+            <div class="exercise-title">\(\dfrac{\sqrt{3200}}{8\sqrt2}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: simplificar radical e cancelar</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                3200=1600\cdot2
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt{3200}=\sqrt{1600\cdot2}=40\sqrt2
+                \]
+              </div>
+              <div class="step">
+                \[
+                \frac{40\sqrt2}{8\sqrt2}=5
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{5}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="41">
+            <div class="exercise-title">\(\left(\sqrt{2}+\sqrt{8}\right)^2\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: simplificar antes de elevar</span>
+              <span class="tag warn">Pegadinha: quadrado de soma tem termo do meio</span>
+            </div>
+            <div class="two-paths">
+              <div class="path best">
+                <strong>Caminho A <span class="pill">simplifica antes</span></strong>
+                \[
+                \sqrt8=2\sqrt2
+                \]
+                \[
+                \sqrt2+\sqrt8=\sqrt2+2\sqrt2=3\sqrt2
+                \]
+                \[
+                (3\sqrt2)^2=18
+                \]
+              </div>
+              <div class="path">
+                <strong>Caminho B</strong>
+                \[
+                (\sqrt2+\sqrt8)^2
+                =
+                2+2\sqrt{16}+8
+                =
+                2+8+8=18
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{18}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="42">
+            <div class="exercise-title">\(\sqrt{50^2-14^2}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: diferença de quadrados</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                Use:
+                \[
+                a^2-b^2=(a-b)(a+b)
+                \]
+              </div>
+              <div class="step">
+                \[
+                50^2-14^2=(50-14)(50+14)=36\cdot64
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt{36\cdot64}=6\cdot8=48
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{48}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="43">
+            <div class="exercise-title">\(\dfrac{(2^4)^3}{(2^3)^4}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: potência de potência</span>
+              <span class="tag warn">Exemplo de cancelamento total</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                (2^4)^3=2^{12}
+                \]
+              </div>
+              <div class="step">
+                \[
+                (2^3)^4=2^{12}
+                \]
+              </div>
+              <div class="step">
+                \[
+                \frac{2^{12}}{2^{12}}=2^0=1
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{1}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="44">
+            <div class="exercise-title">\(\sqrt[6]{729}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: reconhecer \(729=3^6\)</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                729=3^6
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt[6]{729}=\sqrt[6]{3^6}=3
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{3}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="45">
+            <div class="exercise-title">\(\sqrt[3]{64}\cdot\sqrt{81}\div\sqrt[4]{16}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: resolver blocos perfeitos</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                \sqrt[3]{64}=4
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt{81}=9
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt[4]{16}=2
+                \]
+              </div>
+              <div class="step">
+                \[
+                4\cdot9\div2=18
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{18}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="46">
+            <div class="exercise-title">\(\dfrac{2^{-3}+2^{-3}}{2^{-5}}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: fator comum com expoente negativo</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                2^{-3}+2^{-3}=2\cdot2^{-3}=2^1\cdot2^{-3}=2^{-2}
+                \]
+              </div>
+              <div class="step">
+                \[
+                \frac{2^{-2}}{2^{-5}}=2^{-2-(-5)}=2^3=8
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{8}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="47">
+            <div class="exercise-title">\(\sqrt{0{,}0001}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: potência de 10</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                0{,}0001=10^{-4}
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt{10^{-4}}=10^{-2}
+                \]
+              </div>
+              <div class="step">
+                \[
+                10^{-2}=0{,}01
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{0{,}01}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="48">
+            <div class="exercise-title">\(\sqrt[3]{0{,}001}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: potência de 10</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                0{,}001=10^{-3}
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt[3]{10^{-3}}=10^{-1}
+                \]
+              </div>
+              <div class="step">
+                \[
+                10^{-1}=0{,}1
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{0{,}1}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="49">
+            <div class="exercise-title">\(\dfrac{15^2-9^2}{6}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: diferença de quadrados</span>
+            </div>
+            <div class="two-paths">
+              <div class="path best">
+                <strong>Caminho A <span class="pill">mais mental</span></strong>
+                \[
+                15^2-9^2=(15-9)(15+9)=6\cdot24
+                \]
+                \[
+                \frac{6\cdot24}{6}=24
+                \]
+              </div>
+              <div class="path">
+                <strong>Caminho B</strong>
+                \[
+                15^2=225,\quad9^2=81
+                \]
+                \[
+                \frac{225-81}{6}=\frac{144}{6}=24
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{24}\)</div></details>
+          </article>
+
+          <article class="exercise" data-n="50">
+            <div class="exercise-title">\(\sqrt{\dfrac{2^8\cdot3^4}{6^2}}\)</div>
+            <div class="strategy">
+              <span class="tag good">Escolha principal: \(6^2=2^2\cdot3^2\)</span>
+            </div>
+            <div class="steps">
+              <div class="step">
+                \[
+                6^2=(2\cdot3)^2=2^2\cdot3^2
+                \]
+              </div>
+              <div class="step">
+                \[
+                \frac{2^8\cdot3^4}{2^2\cdot3^2}
+                =
+                2^6\cdot3^2
+                \]
+              </div>
+              <div class="step">
+                \[
+                \sqrt{2^6\cdot3^2}=2^3\cdot3=8\cdot3=24
+                \]
+              </div>
+            </div>
+            <details open><summary>Resultado</summary><div class="details-body">\(\boxed{24}\)</div></details>
+          </article>
+        </section>
+
+        <section id="quiz" class="block">
+          <h2>7. Quiz interativo</h2>
+          <p class="sublead">Escolha a alternativa. O objetivo não é só acertar: é perceber a propriedade escondida.</p>
+
+          <div class="quiz">
+            <div class="quiz-card" data-answer="b">
+              <div class="quiz-question">1. Qual é o valor de \(8^{2/3}\)?</div>
+              <div class="answers">
+                <button data-option="a">\(8\)</button>
+                <button data-option="b">\(4\)</button>
+                <button data-option="c">\(16\)</button>
+                <button data-option="d">\(2\)</button>
+              </div>
+              <div class="feedback"></div>
+            </div>
+
+            <div class="quiz-card" data-answer="c">
+              <div class="quiz-question">2. \(\sqrt{72}\) simplifica para:</div>
+              <div class="answers">
+                <button data-option="a">\(2\sqrt{18}\)</button>
+                <button data-option="b">\(3\sqrt{8}\)</button>
+                <button data-option="c">\(6\sqrt2\)</button>
+                <button data-option="d">\(9\sqrt2\)</button>
+              </div>
+              <div class="feedback"></div>
+            </div>
+
+            <div class="quiz-card" data-answer="a">
+              <div class="quiz-question">3. \(\dfrac{2^9\cdot2^2}{2^6}\) vale:</div>
+              <div class="answers">
+                <button data-option="a">\(32\)</button>
+                <button data-option="b">\(2^3\)</button>
+                <button data-option="c">\(2^{17}\)</button>
+                <button data-option="d">\(64\)</button>
+              </div>
+              <div class="feedback"></div>
+            </div>
+
+            <div class="quiz-card" data-answer="d">
+              <div class="quiz-question">4. Qual igualdade está errada?</div>
+              <div class="answers">
+                <button data-option="a">\((2^3)^4=2^{12}\)</button>
+                <button data-option="b">\(\sqrt{9\cdot16}=12\)</button>
+                <button data-option="c">\(3^{-2}=\dfrac{1}{9}\)</button>
+                <button data-option="d">\(\sqrt{9+16}=3+4\)</button>
+              </div>
+              <div class="feedback"></div>
+            </div>
+
+            <div class="quiz-card" data-answer="b">
+              <div class="quiz-question">5. \(\left(\dfrac{16}{81}\right)^{-1/4}\) vale:</div>
+              <div class="answers">
+                <button data-option="a">\(\dfrac{2}{3}\)</button>
+                <button data-option="b">\(\dfrac{3}{2}\)</button>
+                <button data-option="c">\(\dfrac{9}{4}\)</button>
+                <button data-option="d">\(\dfrac{4}{9}\)</button>
+              </div>
+              <div class="feedback"></div>
+            </div>
+
+            <div class="quiz-card" data-answer="a">
+              <div class="quiz-question">6. \(\sqrt{(-7)^2}\) vale:</div>
+              <div class="answers">
+                <button data-option="a">\(7\)</button>
+                <button data-option="b">\(-7\)</button>
+                <button data-option="c">\(\pm7\)</button>
+                <button data-option="d">não existe</button>
+              </div>
+              <div class="feedback"></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="gabarito-mental" class="block">
+          <h2>8. Checklist mental final</h2>
+          <div class="grid cols-2">
+            <div class="card">
+              <h3>Quando aparecer potência</h3>
+              <p>
+                Primeiro pergunte: as bases podem virar a mesma base? Há produto de mesma base?
+                Há quociente de mesma base? Há potência de potência? O sinal negativo está dentro ou fora dos parênteses?
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Quando aparecer raiz</h3>
+              <p>
+                Primeiro pergunte: o radicando tem potência perfeita escondida? Posso escrever como expoente fracionário?
+                Há raiz de raiz? Dá para juntar raízes e formar quadrado/cubo perfeito?
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Quando aparecer soma/subtração</h3>
+              <p>
+                Desconfie. Potência e raiz geralmente não distribuem sobre soma/subtração.
+                Procure fator comum, produtos notáveis ou radicais semelhantes.
+              </p>
+            </div>
+
+            <div class="card">
+              <h3>Quando aparecer fração</h3>
+              <p>
+                Cancele antes de calcular. Transforme tudo em fatores. Se houver expoente negativo, inverta.
+                Se houver raiz no denominador, racionalize quando for útil.
+              </p>
+            </div>
+          </div>
+
+          <div class="note ok">
+            <strong>Regra de ouro:</strong> antes de fazer conta grande, transforme. Quem domina potência e raiz mentalmente
+            não calcula mais: reconhece forma, troca representação e cancela.
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="footer">
+      Potenciação e radiciação • aritmética pura • página de estudo com KaTeX
+    </footer>
+  </div>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "\\[", right: "\\]", display: true},
+          {left: "\\(", right: "\\)", display: false}
+        ],
+        throwOnError: false
+      });
+
+      document.querySelectorAll(".quiz-card").forEach(card => {
+        const answer = card.dataset.answer;
+        const feedback = card.querySelector(".feedback");
+
+        card.querySelectorAll("button").forEach(button => {
+          button.addEventListener("click", () => {
+            card.querySelectorAll("button").forEach(b => {
+              b.classList.remove("correct", "incorrect");
+              b.disabled = true;
+            });
+
+            if (button.dataset.option === answer) {
+              button.classList.add("correct");
+              feedback.textContent = "Correto. Você reconheceu a propriedade certa.";
+              feedback.className = "feedback good";
+            } else {
+              button.classList.add("incorrect");
+              const correct = card.querySelector(`button[data-option="${answer}"]`);
+              if (correct) correct.classList.add("correct");
+              feedback.textContent = "Quase. Repare na propriedade destacada pela alternativa correta.";
+              feedback.className = "feedback bad";
+            }
+
+            if (window.renderMathInElement) {
+              renderMathInElement(card, {
+                delimiters: [
+                  {left: "$$", right: "$$", display: true},
+                  {left: "\\[", right: "\\]", display: true},
+                  {left: "\\(", right: "\\)", display: false}
+                ],
+                throwOnError: false
+              });
+            }
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
